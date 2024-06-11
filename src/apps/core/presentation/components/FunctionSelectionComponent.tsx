@@ -23,6 +23,9 @@ export default class FunctionFragmentSelectionFieldComponent extends FieldCompon
     }
 
     protected constructInputNode(value: FunctionFragment | null, callback: (value: FunctionFragment | null) => void): React.ReactNode {
+        if(value === null){
+            callback(this.props.functions[0]);
+        }
         return (
             <select className="bg-light w-full py-3 rounded-xl px-4 border-gray" value={value?.format() ?? ''} onChange={(event) => {callback(this.getBySignature(event.target.value));}}>
                 {
